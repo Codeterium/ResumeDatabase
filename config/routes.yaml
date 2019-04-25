@@ -1,0 +1,27 @@
+#index:
+#    path: /
+#    defaults: { _controller: 'App\Controller\DefaultController::index' }
+
+veniamin:
+  path: /
+  controller: App\Controller\HomeController::home
+
+
+company_index:
+  path: /company
+  controller: App\Controller\CompanyController::index
+
+company_show:
+  path: /company/{id}
+  controller: App\Controller\CompanyController::show
+
+
+
+
+reaction_index:
+  path: /reaction
+  controller: App\Controller\ReactionController::index
+
+reaction_show:
+  path: /reaction/{id}
+  controller: App\Controller\ReactionController::show
