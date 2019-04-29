@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Компания {{ company.name }}{% endblock %}
+
+{% block header %}
+    <h1>Компания {{ company.name }}</h1>
+{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Номер</th>
+                <td>{{ company.id }}</td>
+            </tr>
+            <tr>
+                <th>Название</th>
+                <td>{{ company.name }}</td>
+            </tr>
+            <tr>
+                <th>Сайт</th>
+                <td>{{ company.site }}</td>
+            </tr>
+            <tr>
+                <th>Адресс</th>
+                <td>{{ company.address }}</td>
+            </tr>
+            <tr>
+                <th>Телефон</th>
+                <td>{{ company.phone }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <a href="{{ path('company_edit', {'id': company.id}) }}" class="btn btn-warning">Изменить</a>
+    <hr />
+    {{ include('company/_delete_form.html.twig') }}
+    {{ include('_parts/_to_list.html.twig', {'button_url': 'company_index', 'button_label': 'Назад'}) }}    
+{% endblock %}

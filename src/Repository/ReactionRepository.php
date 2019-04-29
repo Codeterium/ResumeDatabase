@@ -25,4 +25,40 @@ class ReactionRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    
+    public function findLastTen()
+    {
+        /*
+        $fields = array('r.id','r.reaction','DATE_FORMAT(r.reaction, \'%Y\') as dateAsYear','IDENTITY(r.company) as c');
+
+        return $this->createQueryBuilder('r')
+            ->select($fields)
+            
+            //->orderBy('reaction.id', 'ASC')
+            ->innerJoin('App\Entity\Rezume','rz',  \Doctrine\ORM\Query\Expr\Join::WITH, 'r.rezume = rz.id')
+            ->getQuery()
+            ->getResult()
+        ;
+        */
+
+        $qb = $this->createQueryBuilder('r')
+            ->join('r.company', 'c')
+            ->join('r.rezume', 'z')
+            ;
+    
+        return $qb->getQuery()->execute();        
+
+    }  
+    
+    public function findAllReactionsById($id)
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->join('r.company', 'c')
+            ->join('r.rezume', 'z')
+
+            ; 
+        return $qb->getQuery()->execute();           
+    }
+
 }

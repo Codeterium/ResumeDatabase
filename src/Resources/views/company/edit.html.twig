@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Изменение компании {{ company.name }}{% endblock %}
+
+{% block header %}
+    <h1>Изменение компании {{ company.name }}</h1>
+{% endblock %}
+
+{% block body %}
+    {{ include('company/_form.html.twig', {'button_label': 'Обновить'}) }}
+    {{ include('company/_delete_form.html.twig') }}
+    {{ include('_parts/_to_list.html.twig', {'button_url': 'company_index', 'button_label': 'Назад'}) }}
+{% endblock %}

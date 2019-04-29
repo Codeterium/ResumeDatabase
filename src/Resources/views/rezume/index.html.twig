@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Все резюме{% endblock %}
+
+{% block header %}
+    <h1>Все резюме</h1>
+{% endblock %}
+
+{% block body %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Номер</th>
+                <th>Позиция</th>
+                <th>Файл</th>
+                <th>Текст</th>
+                <th>Создано</th>
+                <th>обновлено</th>
+                <th>действия</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rezume in rezumes %}
+            <tr>
+                <td>{{ rezume.id }}</td>
+                <td>{{ rezume.position }}</td>
+                <td>
+                    {% if rezume.file %}
+                        <a href="{{ asset('uploads/files/' ~ rezume.file) }}">Файл</a>
+                    {% endif %}
+
+                </td>
+                <td>{{ rezume.text }}</td>
+                <td>{{ rezume.createdAt ? rezume.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ rezume.updatedAt ? rezume.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('rezume_show', {'id': rezume.id}) }}" class="btn btn-xs btn-success">Детали</a>
+                    <a href="{{ path('rezume_edit', {'id': rezume.id}) }}" class="btn btn-xs btn-warning">Изменить</a>
+                    <a href="{{ path('rezume_delete', {'id': rezume.id}) }}" class="btn btn-xs btn-danger">Удалить</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('rezume_new') }}" class="btn btn-success">Создать</a>
+{% endblock %}

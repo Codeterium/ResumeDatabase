@@ -25,4 +25,18 @@ class RezumeRepository extends ServiceEntityRepository
         ;
     }
     */
+  
+    public function findActual()
+    {
+ 
+        $qb = $this->createQueryBuilder('r')
+            ->select('r')
+            ->leftJoin('App:Reaction', 'z', 'WITH', 'z.rezume = r.id')
+            ;
+    
+        return $qb->getQuery()->execute();        
+
+    }      
+    
+  
 }

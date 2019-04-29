@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    <h1>Добро пожаловать!</h1>
+    <p>Система анализа откликов на резюме</p> 
+{% endblock %}
+
+{% block body %}
+
+<div class="panel panel-info">
+    <div class="panel-body">
+        {% if companies %}
+            <div class="col-sm-12">Компаний : {{ companies|length }}</div>
+        {% endif %}
+        {% if reactions %}
+            <div class="col-sm-12">Откликов : {{ reactions|length }}</div>
+        {% endif %}
+        {% if rezumes %}
+            <div class="col-sm-12">Резюме : {{ rezumes|length }}</div>
+        {% endif %}
+    </div>
+</div>
+
+
+<table class="table table-bordered">
+<tr>
+    <th>Резюме</th>
+    <th>Число откликов</th>
+    <th>Компании</th>
+</tr>
+{% for rezume in rezumes_actual %}
+    <tr>
+    <td>{{ rezume.title }}</td>
+    <td>{{ rezume.reactions|length }}</td>
+    <td>    
+        {% for reaction  in rezume.reactions %}
+            <p>
+                {{ reaction.company }} <br>
+                <em> отправлено: {{ reaction.sendTime|date('d.m.Y') }}</em>
+                <em> получен ответ: {{ reaction.reaction|date('d.m.Y') }}</em>
+            </p>
+        {% endfor %}
+
+    </td>
+    </tr>
+    
+{% endfor %}
+</table>
+
+{% endblock %}

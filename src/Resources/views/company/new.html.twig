@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Создание новой компании{% endblock %}
+
+{% block header %}
+    <h1>Создание новой компании</h1>
+{% endblock %}
+
+{% block body %}
+    {{ include('company/_form.html.twig', {'button_label': 'Создать'}) }}
+    {{ include('_parts/_to_list.html.twig', {'button_url': 'company_index', 'button_label': 'Назад'}) }}
+{% endblock %}

@@ -20,3 +20,29 @@
   * Использовать миграции
   * Создать фикстуру для заполнения базы тестовыми данными
   * Предложить варианты развития функционала приложения
+
+### Установка
+
+1. Клонировать репозиторий
+    
+    git clone https://github.com/Codeterium/veniamin.git
+
+2. Установить фреймворк
+    
+    composer install
+
+3. Прописать в файле .env параметры подключения к MySQL
+4. Создать базу данных
+    
+    php bin/console doctrine:database:create
+
+5. Создать таблицы
+    
+    php bin/console doctrine:migrations:migrate
+
+6. Создать демонстрационные данные
+    
+    php bin/console doctrine:fixtures:load
+
+
+

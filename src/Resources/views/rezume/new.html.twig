@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Новое резюме{% endblock %}
+
+{% block header %}
+    <h1>Новое резюме</h1>
+{% endblock %}
+
+{% block body %}
+    {{ include('rezume/_form.html.twig', {'button_label': 'Создать'}) }}
+    {{ include('_parts/_to_list.html.twig', {'button_url': 'rezume_index', 'button_label': 'Назад'}) }}    
+{% endblock %}

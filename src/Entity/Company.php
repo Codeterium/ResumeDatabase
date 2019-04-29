@@ -111,5 +111,10 @@ class Company
     {
         $this->phone = $phone;
     }
+
+    public function __toString() {
+        return $this->name;
+    }
+
 }
 

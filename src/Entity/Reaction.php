@@ -44,6 +44,14 @@ class Reaction
      */
     private $reaction;
 
+
+    public function __construct(){
+        $this->sendTime = new \DateTime();
+        $this->reaction = new \DateTime();
+    }
+
+
+
     /**
      * @return mixed
      */

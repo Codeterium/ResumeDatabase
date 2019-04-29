@@ -7,12 +7,19 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\ExecutionContextInterface;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RezumeRepository")
- */
+  */
 class Rezume
 {
+
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -26,9 +33,16 @@ class Rezume
     private $position;
 
     /**
+     * @var string $file
      * @ORM\Column(type="string")
      */
     private $file;
+
+    /**
+     * @var string $file_upload
+     * @var UploadedFile
+     */
+    private $file_upload;
 
 
     /**
@@ -45,6 +59,13 @@ class Rezume
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
+
+
+    public function __construct(){
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
+
 
     /**
      * @return mixed
@@ -133,6 +154,59 @@ class Rezume
     {
         $this->updatedAt = $updatedAt;
     }
+
+
+
+
+
+    /**
+     * Sets file.
+     *
+     * @ param UploadedFile $file
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
+     */
+    public function setFileUpload(UploadedFile $file_upload = null)
+    {
+        $this->file_upload = $file_upload;
+    }
+
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFileUpload()
+    {
+        return $this->file_upload;
+    }
+
+
+    public function deleteFile($path)
+    {
+        if($path && $this->file)
+        {
+            $fs = new Filesystem();
+            try
+            {
+                $fs->remove( $path . '/'. $this->file );
+            } catch (IOException $e) {
+                echo "error";
+            }; 
+            return true;  
+
+        }
+        return false;
+    }
+
+    /**
+     * @return mixed
+     *
+     */
+    public function __toString() {
+        return $this->position;
+    }
+
+  
 
 }
 

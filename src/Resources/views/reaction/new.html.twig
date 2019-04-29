@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Новый оклик{% endblock %}
+
+{% block header %}
+    <h1>Новый оклик</h1>
+{% endblock %}
+
+{% block body %}
+    {{ include('reaction/_form.html.twig', {'button_label': 'Создать'}) }}
+    {{ include('_parts/_to_list.html.twig', {'button_url': 'reaction_index', 'button_label': 'Назад'}) }}    
+{% endblock %}

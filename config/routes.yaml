@@ -4,7 +4,7 @@
 
 veniamin:
   path: /
-  controller: App\Controller\HomeController::home
+  controller: App\Controller\HomeController::index
 
 
 company_index:
@@ -14,6 +14,10 @@ company_index:
 company_show:
   path: /company/{id}
   controller: App\Controller\CompanyController::show
+
+company_edit:
+  path: /company/{id}/edit
+  controller: App\Controller\CompanyController::edit
 
 
 
@@ -25,3 +29,26 @@ reaction_index:
 reaction_show:
   path: /reaction/{id}
   controller: App\Controller\ReactionController::show
+
+
+rezume_index:
+  path: /rezume
+  controller: App\Controller\RezumeController::index
+
+rezume_show:
+  path: /rezume/{id}
+  controller: App\Controller\RezumeController::show
+
+rezume_edit:
+  path: /rezume/{id}/edit
+  controller: App\Controller\RezumeController::edit
+
+rezume_delete:
+  path: /rezume/{id}
+  controller: App\Controller\RezumeController::delete
+
+
+
+app:
+    resource: 'Controller/'
+    type: annotation
